@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Header & Footer Components</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+    /* Ripple effect for menu items */
+    .ripple {
+        position: absolute;
+        border-radius: 50%;
+        background-color: rgba(255, 255, 255, 0.7);
+        transform: scale(0);
+        animation: ripple 0.6s linear;
+        pointer-events: none;
+    }
+    
+    @keyframes ripple {
+        to {
+            transform: scale(2.5);
+            opacity: 0;
+        }
+    }
+    </style>
+</head>
+<body class="bg-gray-100">
+    <!-- Header/Navbar -->
+    <header id="header" class="fixed top-0 left-0 w-full px-4 py-5 md:px-16 lg:px-24 flex justify-between items-center z-50 transition-all duration-300">
+        <!-- Logo -->
+        <a href="#home" class="text-2xl md:text-3xl font-bold text-white">
+            <img src="logo.png" alt="Logo" class="h-10 md:h-12">
+        </a>
+        
+        <!-- Desktop Navigation -->
+        <nav class="hidden md:flex space-x-6 lg:space-x-8">
+            <a href="#home" class="group relative overflow-hidden text-white font-medium text-lg hover:text-white/80 transition px-2 py-1">
+                <span class="relative z-10">Home</span>
+                <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-full"></span>
+            </a>
+            <a href="about.html" class="group relative overflow-hidden text-white font-medium text-lg hover:text-white/80 transition px-2 py-1">
+                <span class="relative z-10">About US</span>
+                <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-full"></span>
+            </a>
+            <a href="services.html" class="group relative overflow-hidden text-white font-medium text-lg hover:text-white/80 transition px-2 py-1">
+                <span class="relative z-10">Services</span>
+                <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-full"></span>
+            </a>
+            <a href="clients.html" class="group relative overflow-hidden text-white font-medium text-lg hover:text-white/80 transition px-2 py-1">
+                <span class="relative z-10">Our Clients</span>
+                <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-full"></span>
+            </a>
+            <a href="#contact" class="group relative overflow-hidden text-white font-medium text-lg hover:text-white/80 transition px-2 py-1">
+                <span class="relative z-10">Contact</span>
+                <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-full"></span>
+            </a>
+        </nav>
+        
+        <!-- Mobile Menu Button -->
+        <button id="menu-toggle" class="md:hidden text-white text-2xl focus:outline-none z-50">
+            ☰
+        </button>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="md:hidden fixed inset-0 z-40 hidden">
+            <!-- Overlay -->
+            <div id="overlay" class="absolute inset-0 bg-black/50 opacity-0 invisible transition-all duration-300"></div>
+            
+            <!-- Menu Content -->
+            <div class="absolute top-0 left-0 h-full w-3/4 max-w-sm bg-gray-900/80 backdrop-blur-sm shadow-xl transform -translate-x-full transition-transform duration-300">
+                <div class="flex flex-col h-full p-6">
+                    <button id="close-menu" class="self-end text-white text-2xl mb-8 hover:text-white/70 transition">×</button>
+                    <div class="flex flex-col space-y-6">
+                        <a href="index.html" class="text-white text-xl hover:text-white/80 transition transform hover:translate-x-2">Home</a>
+                        <a href="about.html" class="text-white text-xl hover:text-white/80 transition transform hover:translate-x-2">About</a>
+                        <a href="services.html" class="text-white text-xl hover:text-white/80 transition transform hover:translate-x-2">Services</a>
+                        <a href="clients.html" class="text-white text-xl hover:text-white/80 transition transform hover:translate-x-2">Our Clients</a>
+                        <a href="#contact" class="text-white text-xl hover:text-white/80 transition transform hover:translate-x-2">Contact</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <!-- Contact Section (from footer) -->
+    <section id="contact" class="py-20 px-4 bg-gray-800 text-white">
+     <div class="max-w-4xl mx-auto">
+        <h2 class="text-3xl md:text-4xl font-bold mb-12 text-center">Contact Us</h2>
+        
+        <div class="flex flex-col md:flex-row gap-12">
+            <div class="md:w-1/2">
+                <h3 class="text-2xl font-semibold mb-6">Get In Touch</h3>
+                
+                <div class="space-y-4">
+                    <div class="flex items-start">
+                        <span class="mr-4 mt-1">📱</span>
+                        <div>
+                            <h4 class="font-semibold">Phone/WhatsApp</h4>
+                            <p class="text-gray-300">+91 98344 60321</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start">
+                        <span class="mr-4 mt-1">✉️</span>
+                        <div>
+                            <h4 class="font-semibold">Email</h4>
+                            <p class="text-gray-300">storiesbysagar01@gmail.com</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start">
+                        <span class="mr-4 mt-1">📍</span>
+                        <div>
+                            <h4 class="font-semibold">Location</h4>
+                            <p class="text-gray-300 mb-2">Ashok Stambh Nashik, Lotus Capital Building, Floor No 07, Shop No.703</p>
+                            <a href="https://maps.app.goo.gl/sQAf8zZVQA5YsydT9" target="_blank" class="text-pink-400 hover:text-pink-300 transition">View on Google Maps</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="md:w-1/2">
+                <form id="contact-form" class="space-y-6">
+                    <div>
+                        <label for="name" class="block mb-2 font-medium">Full Name</label>
+                        <input type="text" id="name" required class="w-full px-4 py-3 rounded-lg bg-gray-700 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-pink-500">
+                    </div>
+                    <div>
+                        <label for="mobile" class="block mb-2 font-medium">Mobile Number</label>
+                        <input type="tel" id="mobile" required class="w-full px-4 py-3 rounded-lg bg-gray-700 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-pink-500">
+                    </div>
+                    <div>
+                        <label for="service" class="block mb-2 font-medium">Select Service</label>
+                        <select id="service" required class="w-full px-4 py-3 rounded-lg bg-gray-700 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-pink-500">
+                            <option value="">-- Select a Service --</option>
+                            <option value="Political Events">Political Events</option>
+                            <option value="Festivals & Trips">Festivals & Trips</option>
+                            <option value="Pre-Wedding Events">Pre-Wedding Events</option>
+                            <option value="Maternity">Maternity</option>
+                            <option value="Baby & Kids Events">Baby & Kids Events</option>
+                            <option value="Personal & Lifestyle">Personal & Lifestyle</option>
+                            <option value="Family & Cultural Functions">Family & Cultural Functions</option>
+                            <option value="Album & Invitation Design">Album & Invitation Design</option>
+                            <option value="Drone Shoot">Drone Shoot</option>
+                            <option value="Live Streaming">Live Streaming</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="event-date" class="block mb-2 font-medium">Event Date</label>
+                        <input type="date" id="event-date" class="w-full px-4 py-3 rounded-lg bg-gray-700 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-pink-500">
+                    </div>
+                    <div>
+                        <label for="message" class="block mb-2 font-medium">Your Message (Optional)</label>
+                        <textarea id="message" rows="3" class="w-full px-4 py-3 rounded-lg bg-gray-700 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-pink-500"></textarea>
+                    </div>
+                    <button type="submit" class="w-full bg-pink-600 text-white font-semibold px-6 py-3 rounded-lg hover:bg-pink-700 transition duration-300">
+                        Let's Get Started
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Footer -->
+    <footer class="py-12 px-4 bg-gray-900 text-gray-400">
+    <div class="max-w-6xl mx-auto">
+        <div class="flex flex-col md:flex-row justify-between items-center">
+            <div class="mb-6 md:mb-0">
+                <a href="#home" class="text-2xl font-bold text-white">
+                    <img src="logo.png" alt="Logo" class="h-10">
+                </a>
+            </div>
+            <div class="flex space-x-6 mb-6 md:mb-0">
+                <a href="#home" class="hover:text-white transition duration-300">Home</a>
+                <a href="#about" class="hover:text-white transition duration-300">About</a>
+                <a href="#services" class="hover:text-white transition duration-300">Services</a>
+                <a href="#portfolio" class="hover:text-white transition duration-300">Portfolio</a>
+                <a href="#contact" class="hover:text-white transition duration-300">Contact</a>
+            </div>
+            <div class="flex space-x-4">
+                <a href="#" class="text-gray-400 hover:text-white transition duration-300 text-xl" aria-label="Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="#" class="text-gray-400 hover:text-white transition duration-300 text-xl" aria-label="LinkedIn">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="#" class="text-gray-400 hover:text-white transition duration-300 text-xl" aria-label="Facebook">
+                    <i class="fab fa-facebook"></i>
+                </a>
+                <a href="#" class="text-gray-400 hover:text-white transition duration-300 text-xl" aria-label="WhatsApp">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+            </div>
+        </div>
+        <div class="border-t border-gray-800 mt-8 pt-8 text-center">
+            <p>&copy; 2023 Stories By Sagar. All rights reserved.</p>
+            <p class="mt-2 text-sm">Developed by <a href="https://cynortech.in" target="_blank" class="text-pink-400 hover:text-pink-300">CYNOR</a></p>
+        </div>
+    </div>
+</footer>
+
+    <script>
+        // Create ripple effect on menu items
+        function createRipple(event) {
+            const menuItem = event.currentTarget;
+            const circle = document.createElement("span");
+            const diameter = Math.max(menuItem.clientWidth, menuItem.clientHeight);
+            const radius = diameter / 2;
+            
+            circle.style.width = circle.style.height = `${diameter}px`;
+            circle.style.left = `${event.clientX - menuItem.getBoundingClientRect().left - radius}px`;
+            circle.style.top = `${event.clientY - menuItem.getBoundingClientRect().top - radius}px`;
+            circle.classList.add("ripple");
+            
+            const ripple = menuItem.getElementsByClassName("ripple")[0];
+            
+            if (ripple) {
+                ripple.remove();
+            }
+            
+            menuItem.appendChild(circle);
+        }
+
+        // Add ripple effect to desktop menu items
+        const desktopMenuItems = document.querySelectorAll('nav a');
+        desktopMenuItems.forEach(item => {
+            item.addEventListener('click', createRipple);
+        });
+
+        // Mobile Menu Toggle
+        const menuToggle = document.getElementById('menu-toggle');
+        const closeMenu = document.getElementById('close-menu');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const overlay = document.getElementById('overlay');
+        const menuContent = mobileMenu.querySelector('div:not(#overlay)');
+
+        function toggleMenu() {
+            if (mobileMenu.classList.contains('hidden')) {
+                mobileMenu.classList.remove('hidden');
+                setTimeout(() => {
+                    overlay.classList.remove('invisible');
+                    overlay.classList.add('opacity-100');
+                    menuContent.classList.remove('-translate-x-full');
+                }, 10);
+            } else {
+                closeMobileMenu();
+            }
+        }
+
+        function closeMobileMenu() {
+            overlay.classList.remove('opacity-100');
+            overlay.classList.add('invisible');
+            menuContent.classList.add('-translate-x-full');
+            setTimeout(() => {
+                mobileMenu.classList.add('hidden');
+            }, 300);
+        }
+
+        menuToggle.addEventListener('click', toggleMenu);
+        closeMenu.addEventListener('click', closeMobileMenu);
+        overlay.addEventListener('click', closeMobileMenu);
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                if (this.parentElement.classList.contains('hidden') === false) {
+                    closeMobileMenu();
+                }
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // WhatsApp form submission
+        document.getElementById('contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const mobile = document.getElementById('mobile').value;
+            const service = document.getElementById('service').value;
+            const date = document.getElementById('event-date').value;
+            const message = document.getElementById('message').value;
+            
+            let whatsappMessage = `Hello Stories By Sagar,\n\nI'm interested in your services:\n\n`;
+            whatsappMessage += `Name: ${name}\n`;
+            whatsappMessage += `Mobile: ${mobile}\n`;
+            whatsappMessage += `Service: ${service}\n`;
+            if (date) whatsappMessage += `Event Date: ${date}\n`;
+            if (message) whatsappMessage += `Message: ${message}\n\n`;
+            whatsappMessage += `Please contact me for more details.`;
+            
+            const encodedMessage = encodeURIComponent(whatsappMessage);
+            window.open(`https://wa.me/919834460321?text=${encodedMessage}`, '_blank');
+        });
+
+        // Change header background on scroll
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.classList.add('bg-black/80', 'backdrop-blur-sm', 'py-4', 'shadow-lg');
+                header.classList.remove('py-5');
+            } else {
+                header.classList.remove('bg-black/80', 'backdrop-blur-sm', 'py-4', 'shadow-lg');
+                header.classList.add('py-5');
+            }
+        });
+    </script>
+</body>
+</html>

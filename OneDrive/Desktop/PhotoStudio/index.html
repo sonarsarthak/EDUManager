@@ -1,0 +1,979 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stories By Sagar - Wedding Photography</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+      <style>
+    /* Tumhara pehla CSS */
+    .ripple {
+        position: absolute;
+        border-radius: 50%;
+        background-color: rgba(255, 255, 255, 0.7);
+        transform: scale(0);
+        animation: ripple 0.6s linear;
+        pointer-events: none;
+    }
+    
+    @keyframes ripple {
+        to {
+            transform: scale(2.5);
+            opacity: 0;
+        }
+    }
+    
+    .video-background {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: -1;
+    }
+    
+    .video-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.3);
+        z-index: 0;
+    }
+    
+    .portfolio-item {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .portfolio-item:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    
+        
+    }
+  </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    transitionProperty: {
+                        'width': 'width',
+                        'transform': 'transform'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-100">
+    <!-- Hero Section -->
+    <div id="home" class="relative h-screen overflow-hidden">
+        <!-- Video Background -->
+        <video autoplay muted loop class="video-background">
+            <source src="bc.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="video-overlay"></div>
+        
+        <!-- Header/Navbar -->
+        <header id="header" class="fixed top-0 left-0 w-full px-4 py-5 md:px-16 lg:px-24 flex justify-between items-center z-50 transition-all duration-300">
+            <!-- Logo -->
+            <a href="#home" class="text-2xl md:text-3xl font-bold text-white">
+                <img src="logo.png" alt="Logo" class="h-10 md:h-12">
+            </a>
+            
+            <!-- Desktop Navigation -->
+            <nav class="hidden md:flex space-x-6 lg:space-x-8">
+                <a href="#home" class="group relative overflow-hidden text-white font-medium text-lg hover:text-white/80 transition px-2 py-1">
+                    <span class="relative z-10">Home</span>
+                    <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-full"></span>
+                </a>
+                <a href="about.html" class="group relative overflow-hidden text-white font-medium text-lg hover:text-white/80 transition px-2 py-1">
+                    <span class="relative z-10">About US</span>
+                    <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-full"></span>
+                </a>
+                <a href="services.html" class="group relative overflow-hidden text-white font-medium text-lg hover:text-white/80 transition px-2 py-1">
+                    <span class="relative z-10">Services</span>
+                    <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-full"></span>
+                </a>
+                <a href="stories.html" class="group relative overflow-hidden text-white font-medium text-lg hover:text-white/80 transition px-2 py-1">
+                    <span class="relative z-10">STORIES</span>
+                    <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-full"></span>
+                </a>
+                <a href="#contact" class="group relative overflow-hidden text-white font-medium text-lg hover:text-white/80 transition px-2 py-1">
+                    <span class="relative z-10">Contact</span>
+                    <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-full"></span>
+                </a>
+            </nav>
+            
+            <!-- Mobile Menu Button -->
+            <button id="menu-toggle" class="md:hidden text-white text-2xl focus:outline-none z-50">
+                ☰
+            </button>
+            
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="md:hidden fixed inset-0 z-40 hidden">
+                <!-- Overlay -->
+                <div id="overlay" class="absolute inset-0 bg-black/50 opacity-0 invisible transition-all duration-300"></div>
+                
+                <!-- Menu Content -->
+                <div class="absolute top-0 left-0 h-full w-3/4 max-w-sm bg-gray-900/80 backdrop-blur-sm shadow-xl transform -translate-x-full transition-transform duration-300">
+                    <div class="flex flex-col h-full p-6">
+                        <button id="close-menu" class="self-end text-white text-2xl mb-8 hover:text-white/70 transition">×</button>
+                        <div class="flex flex-col space-y-6">
+                            <a href="index.html" class="text-white text-xl hover:text-white/80 transition transform hover:translate-x-2">Home</a>
+                            <a href="about.html" class="text-white text-xl hover:text-white/80 transition transform hover:translate-x-2">About</a>
+                            <a href="services.html" class="text-white text-xl hover:text-white/80 transition transform hover:translate-x-2">Services</a>
+                            <a href="clients.html" class="text-white text-xl hover:text-white/80 transition transform hover:translate-x-2">Our Clients</a>
+                            <a href="#contact" class="text-white text-xl hover:text-white/80 transition transform hover:translate-x-2">Contact</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        
+        <!-- Hero Content -->
+        <div class="h-full flex items-center justify-center text-center px-4 relative z-10">
+            <div class="text-white">
+                <h1 class="text-white text-center text-[55px] md:text-[85px] font-bold leading-[1.05] animate-glow z-10"> STORIES<br>
+                        <span class="text-[28px] md:text-[45px] font-light tracking-widest inline-block">
+                          BY SAGAR
+                        </span>
+                </h1>
+<p class="text-lg md:text-2xl max-w-3xl mx-auto mt-8 mb-10 text-gray-300 text-center tracking-wide transition-colors duration-500 hover:text-white">
+  Professional wedding photography, cinematic videography & elegant design – because your big day deserves the best.
+</p>
+
+               
+
+<div class="relative group cursor-pointer inline-block">
+  <!-- Main Button -->
+  <div 
+  onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})"
+  class="relative px-4 py-2 border-2 border-white text-white font-semibold text-base rounded-lg transition-all duration-300 group-hover:translate-y-1 group-hover:translate-x-1 bg-transparent backdrop-blur-md shadow-[4px_4px_8px_rgba(255,255,255,0.1)] group-hover:shadow-[6px_6px_12px_rgba(255,255,255,0.15)] cursor-pointer"
+>
+  Contact Now
+</div>
+
+  <!-- Dashed Border -->
+  <div
+    class="absolute inset-0 border-2 border-dashed border-white rounded-lg opacity-30 group-hover:opacity-100 transition-opacity duration-300"
+  ></div>
+
+  <!-- Ping Effects -->
+  <div class="absolute -top-2 -right-2 w-3 h-3 bg-white rounded-full animate-ping shadow-md opacity-60"></div>
+  <div class="absolute -bottom-2 -left-2 w-3 h-3 bg-white rounded-full animate-ping shadow-md opacity-60"></div>
+  <div class="absolute top-1/3 left-2 w-2.5 h-2.5 bg-white rounded-full animate-ping opacity-50"></div>
+  <div class="absolute top-2/3 right-2 w-2.5 h-2.5 bg-white rounded-full animate-ping opacity-50"></div>
+</div>
+
+
+
+
+
+            </div>
+        </div>
+    </div>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 px-4 bg-blue-50">
+  <div class="max-w-6xl mx-auto">
+    <h2 class="text-3xl md:text-5xl font-extrabold mb-12 text-center leading-tight">
+      <span class="animated-title inline-block">Meet The Founder</span>
+    </h2>
+
+    <div class="flex flex-col md:flex-row items-center gap-12">
+      <!-- Circular Founder Photo with Glow -->
+      <div class="md:w-1/2 flex justify-center">
+        <div class="relative founder-photo-container w-64 h-64">
+          <div class="absolute inset-0 rounded-full glow-border animate-spin-slow"></div>
+          <div
+            class="absolute inset-1 rounded-full bg-white z-10 flex items-center justify-center overflow-hidden">
+            <img src="./sagar.png" alt="Sagar, Founder of Stories by Sagar"
+              class="w-full h-full object-cover rounded-full" />
+          </div>
+          <div class="absolute -inset-2 rounded-full pulse-ring"></div>
+        </div>
+      </div>
+
+      <!-- Founder Bio -->
+      <div class="md:w-1/2">
+        <h3 class="text-2xl md:text-3xl font-light mb-2 text-gray-700">Sagar Navale</h3>
+<p class="text-lg md:text-xl font-light text-gray-500 mb-4">Founder & Creative Director</p>
+
+
+        <div class="mb-6 space-y-4 text-gray-700">
+          <p class="text-lg italic">
+            "Photography isn't just my profession – it's my way of freezing emotions in time."
+          </p>
+          <p class="text-base leading-relaxed">
+            With 8+ years capturing love stories across India, I blend technical precision with artistic vision to
+            create memories that last generations.
+          </p>
+        </div>
+
+        <div class="space-y-4 mb-6">
+          <div class="flex items-center space-x-3">
+            <div class="w-3 h-3 rounded-full bg-pink-500"></div>
+            <span class="text-base text-gray-800 font-medium">200+ Weddings Captured</span>
+          </div>
+          <div class="flex items-center space-x-3">
+            <div class="w-3 h-3 rounded-full bg-pink-500"></div>
+            <span class="text-base text-gray-800 font-medium">Available Worldwide</span>
+          </div>
+          <div class="flex items-center space-x-3">
+            <div class="w-3 h-3 rounded-full bg-pink-500"></div>
+            <span class="text-base text-gray-800 font-medium">5 Industry Awards</span>
+          </div>
+        </div>
+
+        <a href="about.html">
+  <button
+    class="bg-gradient-to-r from-pink-500 to-blue-500 text-white px-6 py-2 rounded-full shadow-md hover:shadow-lg transition-all transform hover:scale-105 text-base md:text-lg font-semibold">
+    Read More...
+  </button>
+</a>
+
+      </div>
+    </div>
+  </div>
+
+  <style>
+    /* Animated Title */
+    .animated-title {
+      background: linear-gradient(90deg, #ec4899, #3b82f6, #ec4899);
+      background-size: 200% auto;
+      color: transparent;
+      -webkit-background-clip: text;
+      background-clip: text;
+      animation: shine 3s linear infinite;
+    }
+
+    @keyframes shine {
+      to {
+        background-position: 200% center;
+      }
+    }
+
+    /* Circular Photo Effects */
+    .founder-photo-container {
+      width: 18rem;
+      height: 18rem;
+      position: relative;
+    }
+
+    .glow-border {
+      background: conic-gradient(#ec4899, #3b82f6, #10b981, #f59e0b, #ec4899);
+      filter: blur(10px);
+      opacity: 0.7;
+    }
+
+    .animate-spin-slow {
+      animation: spin 8s linear infinite;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    .pulse-ring {
+      border: 2px solid rgba(236, 72, 153, 0.5);
+      animation: pulse 3s ease-out infinite;
+    }
+
+    @keyframes pulse {
+      0% {
+        transform: scale(1);
+        opacity: 1;
+      }
+
+      100% {
+        transform: scale(1.15);
+        opacity: 0;
+      }
+    }
+
+    .founder-photo-container:hover .glow-border {
+      opacity: 0.9;
+      filter: blur(12px);
+    }
+
+    .founder-photo-container:hover img {
+      transform: scale(1.05);
+      transition: transform 0.5s ease;
+    }
+    /* Add this inside <style> tag */
+
+.founder-photo-container::before,
+.founder-photo-container::after {
+  content: '';
+  position: absolute;
+  border-radius: 9999px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.founder-photo-container:hover::before {
+  width: 20px;
+  height: 20px;
+  top: 40%;
+  left: 40%;
+  background-color: rgba(236, 72, 153, 0.3);
+  animation: bubble 1.5s ease-out forwards;
+}
+
+.founder-photo-container:hover::after {
+  width: 30px;
+  height: 30px;
+  top: 60%;
+  left: 60%;
+  background-color: rgba(59, 130, 246, 0.3);
+  animation: bubble 1.8s ease-out forwards;
+}
+
+@keyframes bubble {
+  0% {
+    transform: scale(0.8);
+    opacity: 0.6;
+  }
+  50% {
+    transform: scale(1.5);
+    opacity: 0.3;
+  }
+  100% {
+    transform: scale(2.5);
+    opacity: 0;
+  }
+}
+
+  </style>
+</section>
+
+
+    <!-- Services Section -->
+    <section id="services" class="py-20 px-4 bg-white">
+    <div class="max-w-6xl mx-auto">
+        <!-- Animated Title -->
+        <h2 class="text-3xl md:text-4xl font-bold mb-6 text-center">
+            <span class="animated-title inline-block">Our Capturing Services</span>
+        </h2>
+        <p class="text-xl text-gray-600 text-center max-w-3xl mx-auto mb-16">Preserving your precious moments with artistic photography & cinematic storytelling</p>
+        
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Service 1 - Wedding Photography -->
+            <div class="service-card group">
+                <div class="text-4xl mb-4 text-pink-600 transform group-hover:rotate-6 group-hover:scale-110 transition duration-300">💍</div>
+                <h3 class="text-2xl font-semibold mb-4">Wedding Photography</h3>
+                <p class="text-gray-700">Complete coverage of your special day with artistic shots and candid moments</p>
+            </div>
+            
+            <!-- Service 2 - Cinematic Videography -->
+            <div class="service-card group">
+                <div class="text-4xl mb-4 text-pink-600 transform group-hover:-rotate-6 group-hover:scale-110 transition duration-300">🎬</div>
+                <h3 class="text-2xl font-semibold mb-4">Cinematic Videography</h3>
+                <p class="text-gray-700">Storytelling through motion with professional equipment and editing</p>
+            </div>
+            
+            <!-- Service 3 - Complete Package -->
+            <div class="service-card group">
+                <div class="text-4xl mb-4 text-pink-600 transform group-hover:rotate-6 group-hover:scale-110 transition duration-300">✨</div>
+                <h3 class="text-2xl font-semibold mb-4">Complete Package</h3>
+                <p class="text-gray-700">Photography + Videography combo for comprehensive coverage</p>
+            </div>
+            
+            <!-- Service 4 - Pre-Wedding Shoot -->
+            <div class="service-card group">
+                <div class="text-4xl mb-4 text-pink-600 transform group-hover:-rotate-6 group-hover:scale-110 transition duration-300">🌄</div>
+                <h3 class="text-2xl font-semibold mb-4">Pre-Wedding Shoot</h3>
+                <p class="text-gray-700">Romantic outdoor sessions at scenic locations in and around Nashik</p>
+            </div>
+            
+            <!-- Service 5 - Maternity Shoot -->
+            <div class="service-card group">
+                <div class="text-4xl mb-4 text-pink-600 transform group-hover:rotate-6 group-hover:scale-110 transition duration-300">👶</div>
+                <h3 class="text-2xl font-semibold mb-4">Maternity Shoot</h3>
+                <p class="text-gray-700">Celebrate this beautiful phase with elegant portrait sessions</p>
+            </div>
+            
+            <!-- Service 6 - Portfolio Shoot -->
+            <div class="service-card group">
+                <div class="text-4xl mb-4 text-pink-600 transform group-hover:-rotate-6 group-hover:scale-110 transition duration-300">📸</div>
+                <h3 class="text-2xl font-semibold mb-4">Portfolio Shoot</h3>
+                <p class="text-gray-700">Professional images for models, actors, and professionals</p>
+            </div>
+        </div>
+        
+        <div class="text-center mt-16">
+            <a href="#contact" class="inline-block bg-pink-600 text-white font-semibold px-8 py-3 rounded-full hover:bg-pink-700 transition duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
+                Customize Your Package
+            </a>
+        </div>
+    </div>
+    
+    <style>
+        /* Animated Title */
+        .animated-title {
+            background: linear-gradient(90deg, #ec4899, #f472b6, #ec4899);
+            background-size: 200% auto;
+            color: transparent;
+            -webkit-background-clip: text;
+            background-clip: text;
+            animation: shine 3s linear infinite;
+        }
+        
+        @keyframes shine {
+            to {
+                background-position: 200% center;
+            }
+        }
+        
+        /* Service Card */
+        .service-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.05);
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid rgba(236, 72, 153, 0.05);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, #ec4899, #f472b6);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.5s ease;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px -10px rgba(236, 72, 153, 0.2);
+            border-color: rgba(236, 72, 153, 0.2);
+        }
+        
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .service-card h3 {
+            position: relative;
+            display: inline-block;
+            transition: color 0.3s ease;
+        }
+        
+        .service-card:hover h3 {
+            color: #ec4899;
+        }
+        
+        .service-card p {
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+        
+        .service-card:hover p {
+            transform: translateY(-5px);
+        }
+    </style>
+</section>
+
+    <!-- Portfolio Section -->
+   <section id="portfolio" class="py-20 px-4 bg-gray-50">
+  <div class="max-w-6xl mx-auto">
+    <h2 class="text-3xl md:text-4xl font-bold mb-4 text-center animate-fade-in-up">STORIES</h2>
+    <p class="text-xl text-gray-600 text-center max-w-3xl mx-auto mb-16 animate-fade-in-up delay-100">
+      A glimpse of our recent work
+    </p>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <!-- Portfolio Item 1 -->
+      <div class="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 group relative animate-fade-in-up delay-200">
+        <div class="relative overflow-hidden">
+          <img
+            src="./img/one.jpg"
+            alt="Traditional Hindu Wedding"
+            class="w-full h-64 object-cover transform group-hover:scale-110 transition duration-500"
+            loading="lazy"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+          <div class="absolute bottom-0 left-0 p-5 translate-y-4 group-hover:translate-y-0 transition-transform duration-300 opacity-0 group-hover:opacity-100">
+            <p class="text-white text-sm">A vibrant celebration with all traditional rituals</p>
+          </div>
+        </div>
+        <div class="p-5 text-center">
+          <h3 class="text-lg font-bold mb-1">Ravi & Priya</h3>
+          <p class="text-sm text-gray-600 mb-1">Traditional Hindu Wedding</p>
+          <p class="text-sm text-gray-500 italic">The Leela Palace, Mumbai</p>
+        </div>
+      </div>
+
+      <!-- Portfolio Item 2 -->
+      <div class="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 group relative animate-fade-in-up delay-300">
+        <div class="relative overflow-hidden">
+          <img
+            src="./img/two.jpg"
+            alt="Beachside Destination Wedding"
+            class="w-full h-64 object-cover transform group-hover:scale-110 transition duration-500"
+            loading="lazy"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+          <div class="absolute bottom-0 left-0 p-5 translate-y-4 group-hover:translate-y-0 transition-transform duration-300 opacity-0 group-hover:opacity-100">
+            <p class="text-white text-sm">Sunset vows by the Arabian Sea</p>
+          </div>
+        </div>
+        <div class="p-5 text-center">
+          <h3 class="text-lg font-bold mb-1">Aakash & Meera</h3>
+          <p class="text-sm text-gray-600 mb-1">Beachside Destination Wedding</p>
+          <p class="text-sm text-gray-500 italic">Goa Beach</p>
+        </div>
+      </div>
+
+      <!-- Portfolio Item 3 -->
+      <div class="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 group relative animate-fade-in-up delay-400">
+        <div class="relative overflow-hidden">
+          <img
+            src="./img/three.jpg"
+            alt="Courtyard Celebration"
+            class="w-full h-64 object-cover transform group-hover:scale-110 transition duration-500"
+            loading="lazy"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+          <div class="absolute bottom-0 left-0 p-5 translate-y-4 group-hover:translate-y-0 transition-transform duration-300 opacity-0 group-hover:opacity-100">
+            <p class="text-white text-sm">Royal wedding in the city of lakes</p>
+          </div>
+        </div>
+        <div class="p-5 text-center">
+          <h3 class="text-lg font-bold mb-1">Rahul & Aditi</h3>
+          <p class="text-sm text-gray-600 mb-1">Courtyard Celebration</p>
+          <p class="text-sm text-gray-500 italic">Udaipur Heritage Property</p>
+        </div>
+      </div>
+
+      <!-- Portfolio Item 4 -->
+      <div class="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 group relative animate-fade-in-up delay-500">
+        <div class="relative overflow-hidden">
+          <img
+            src="./img/four.jpg"
+            alt="Christian Church Ceremony"
+            class="w-full h-64 object-cover transform group-hover:scale-110 transition duration-500"
+            loading="lazy"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+          <div class="absolute bottom-0 left-0 p-5 translate-y-4 group-hover:translate-y-0 transition-transform duration-300 opacity-0 group-hover:opacity-100">
+            <p class="text-white text-sm">Elegant church wedding with choir</p>
+          </div>
+        </div>
+        <div class="p-5 text-center">
+          <h3 class="text-lg font-bold mb-1">Chris & Angela</h3>
+          <p class="text-sm text-gray-600 mb-1">Christian Church Ceremony</p>
+          <p class="text-sm text-gray-500 italic">St. Michael's Church, Bangalore</p>
+        </div>
+      </div>
+
+      <!-- Portfolio Item 5 -->
+      <div class="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 group relative animate-fade-in-up delay-600">
+        <div class="relative overflow-hidden">
+          <img
+            src="./img/five.jpg"
+            alt="Sikh Anand Karaj"
+            class="w-full h-64 object-cover transform group-hover:scale-110 transition duration-500"
+            loading="lazy"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+          <div class="absolute bottom-0 left-0 p-5 translate-y-4 group-hover:translate-y-0 transition-transform duration-300 opacity-0 group-hover:opacity-100">
+            <p class="text-white text-sm">Blessed ceremony at the Golden Temple</p>
+          </div>
+        </div>
+        <div class="p-5 text-center">
+          <h3 class="text-lg font-bold mb-1">Gurpreet & Simran</h3>
+          <p class="text-sm text-gray-600 mb-1">Sikh Anand Karaj</p>
+          <p class="text-sm text-gray-500 italic">Golden Temple, Amritsar</p>
+        </div>
+      </div>
+
+      <!-- Portfolio Item 6 -->
+      <div class="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 group relative animate-fade-in-up delay-700">
+        <div class="relative overflow-hidden">
+          <img
+            src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc"
+            alt="Reception Gala"
+            class="w-full h-64 object-cover transform group-hover:scale-110 transition duration-500"
+            loading="lazy"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+          <div class="absolute bottom-0 left-0 p-5 translate-y-4 group-hover:translate-y-0 transition-transform duration-300 opacity-0 group-hover:opacity-100">
+            <p class="text-white text-sm">Lavish reception with celebrity guests</p>
+          </div>
+        </div>
+        <div class="p-5 text-center">
+          <h3 class="text-lg font-bold mb-1">Arjun & Tara</h3>
+          <p class="text-sm text-gray-600 mb-1">Reception Gala</p>
+          <p class="text-sm text-gray-500 italic">Grand Hyatt, Mumbai</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA Button -->
+    <div class="text-center mt-16 animate-fade-in-up delay-800">
+      <a
+        href="stories.html"
+        class="inline-block border-2 border-gray-800 text-gray-800 font-semibold px-8 py-3 rounded-full hover:bg-gray-800 hover:text-white transition duration-300 hover:scale-105 transform"
+      >
+        View Full Stories
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .animate-fade-in-up {
+    animation: fadeInUp 0.6s ease-out forwards;
+  }
+  
+  .delay-100 {
+    animation-delay: 0.1s;
+  }
+  
+  .delay-200 {
+    animation-delay: 0.2s;
+  }
+  
+  .delay-300 {
+    animation-delay: 0.3s;
+  }
+  
+  .delay-400 {
+    animation-delay: 0.4s;
+  }
+  
+  .delay-500 {
+    animation-delay: 0.5s;
+  }
+  
+  .delay-600 {
+    animation-delay: 0.6s;
+  }
+  
+  .delay-700 {
+    animation-delay: 0.7s;
+  }
+  
+  .delay-800 {
+    animation-delay: 0.8s;
+  }
+</style>
+
+
+    <!-- Testimonials Section -->
+    <section class="py-20 px-4 bg-pink-50">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-3xl md:text-4xl font-bold mb-12 text-center">Client Testimonials</h2>
+            <p class="text-xl text-gray-600 text-center max-w-3xl mx-auto mb-16">What couples say about their experience</p>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="bg-white p-8 rounded-xl shadow-md">
+                    <div class="flex items-center mb-4">
+                        <div class="text-yellow-400 text-2xl">★★★★★</div>
+                    </div>
+                    <p class="text-gray-700 mb-6">"Sagar captured our wedding day perfectly! His attention to detail and ability to capture raw emotions is unmatched. We've received so many compliments on our photos."</p>
+                    <div class="flex items-center">
+                        <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Client" class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <h4 class="font-semibold">Priya & Rohan</h4>
+                            <p class="text-gray-600 text-sm">Mumbai, December 2022</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 2 -->
+                <div class="bg-white p-8 rounded-xl shadow-md">
+                    <div class="flex items-center mb-4">
+                        <div class="text-yellow-400 text-2xl">★★★★★</div>
+                    </div>
+                    <p class="text-gray-700 mb-6">"The highlight film Sagar created brought tears to our eyes. He perfectly captured the essence of our relationship and wedding day. Worth every penny!"</p>
+                    <div class="flex items-center">
+                        <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Client" class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <h4 class="font-semibold">Amit & Neha</h4>
+                            <p class="text-gray-600 text-sm">Goa, February 2023</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 3 -->
+                <div class="bg-white p-8 rounded-xl shadow-md">
+                    <div class="flex items-center mb-4">
+                        <div class="text-yellow-400 text-2xl">★★★★★</div>
+                    </div>
+                    <p class="text-gray-700 mb-6">"Professional, creative, and so easy to work with! Sagar made us feel comfortable in front of the camera and delivered stunning photos we'll treasure forever."</p>
+                    <div class="flex items-center">
+                        <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Client" class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <h4 class="font-semibold">Ananya & Vikram</h4>
+                            <p class="text-gray-600 text-sm">Delhi, November 2022</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 px-4 bg-gray-800 text-white">
+    <div class="max-w-4xl mx-auto">
+        <h2 class="text-3xl md:text-4xl font-bold mb-12 text-center">Contact Us</h2>
+        
+        <div class="flex flex-col md:flex-row gap-12">
+            <div class="md:w-1/2">
+                <h3 class="text-2xl font-semibold mb-6">Get In Touch</h3>
+                
+                <div class="space-y-4">
+                    <div class="flex items-start">
+                        <span class="mr-4 mt-1">📱</span>
+                        <div>
+                            <h4 class="font-semibold">Phone/WhatsApp</h4>
+                            <p class="text-gray-300">+91 98344 60321</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start">
+                        <span class="mr-4 mt-1">✉️</span>
+                        <div>
+                            <h4 class="font-semibold">Email</h4>
+                            <p class="text-gray-300">storiesbysagar01@gmail.com</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start">
+                        <span class="mr-4 mt-1">📍</span>
+                        <div>
+                            <h4 class="font-semibold">Location</h4>
+                            <p class="text-gray-300 mb-2">Ashok Stambh Nashik, Lotus Capital Building, Floor No 07, Shop No.703</p>
+                            <a href="https://maps.app.goo.gl/sQAf8zZVQA5YsydT9" target="_blank" class="text-pink-400 hover:text-pink-300 transition">View on Google Maps</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="md:w-1/2">
+                <form id="contact-form" class="space-y-6">
+                    <div>
+                        <label for="name" class="block mb-2 font-medium">Full Name</label>
+                        <input type="text" id="name" required class="w-full px-4 py-3 rounded-lg bg-gray-700 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-pink-500">
+                    </div>
+                    <div>
+                        <label for="mobile" class="block mb-2 font-medium">Mobile Number</label>
+                        <input type="tel" id="mobile" required class="w-full px-4 py-3 rounded-lg bg-gray-700 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-pink-500">
+                    </div>
+                    <div>
+                        <label for="service" class="block mb-2 font-medium">Select Service</label>
+                        <select id="service" required class="w-full px-4 py-3 rounded-lg bg-gray-700 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-pink-500">
+                            <option value="">-- Select a Service --</option>
+                            <option value="Political Events">Political Events</option>
+                            <option value="Festivals & Trips">Festivals & Trips</option>
+                            <option value="Pre-Wedding Events">Pre-Wedding Events</option>
+                            <option value="Maternity">Maternity</option>
+                            <option value="Baby & Kids Events">Baby & Kids Events</option>
+                            <option value="Personal & Lifestyle">Personal & Lifestyle</option>
+                            <option value="Family & Cultural Functions">Family & Cultural Functions</option>
+                            <option value="Album & Invitation Design">Album & Invitation Design</option>
+                            <option value="Drone Shoot">Drone Shoot</option>
+                            <option value="Live Streaming">Live Streaming</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="event-date" class="block mb-2 font-medium">Event Date</label>
+                        <input type="date" id="event-date" class="w-full px-4 py-3 rounded-lg bg-gray-700 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-pink-500">
+                    </div>
+                    <div>
+                        <label for="message" class="block mb-2 font-medium">Your Message (Optional)</label>
+                        <textarea id="message" rows="3" class="w-full px-4 py-3 rounded-lg bg-gray-700 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-pink-500"></textarea>
+                    </div>
+                    <button type="submit" class="w-full bg-pink-600 text-white font-semibold px-6 py-3 rounded-lg hover:bg-pink-700 transition duration-300">
+                        Let's Get Started
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Footer -->
+    <footer class="py-12 px-4 bg-gray-900 text-gray-400">
+    <div class="max-w-6xl mx-auto">
+        <div class="flex flex-col md:flex-row justify-between items-center">
+            <div class="mb-6 md:mb-0">
+                <a href="#home" class="text-2xl font-bold text-white">
+                    <img src="logo.png" alt="Logo" class="h-10">
+                </a>
+            </div>
+            <div class="flex space-x-6 mb-6 md:mb-0">
+                <a href="./index.html" class="hover:text-white transition duration-300">Home</a>
+                <a href="./about.html" class="hover:text-white transition duration-300">About</a>
+                <a href="./services.html" class="hover:text-white transition duration-300">Services</a>
+                <a href="./stories.html" class="hover:text-white transition duration-300">Stories</a>
+                <a href="#contact" class="hover:text-white transition duration-300">Contact</a>
+            </div>
+            <div class="flex space-x-4">
+                <a href="#" class="text-gray-400 hover:text-white transition duration-300 text-xl" aria-label="Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="#" class="text-gray-400 hover:text-white transition duration-300 text-xl" aria-label="LinkedIn">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="#" class="text-gray-400 hover:text-white transition duration-300 text-xl" aria-label="Facebook">
+                    <i class="fab fa-facebook"></i>
+                </a>
+                <a href="#" class="text-gray-400 hover:text-white transition duration-300 text-xl" aria-label="WhatsApp">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+            </div>
+        </div>
+        <div class="border-t border-gray-800 mt-8 pt-8 text-center">
+            <p>&copy; 2023 Stories By Sagar. All rights reserved.</p>
+            <p class="mt-2 text-sm">Developed by <a href="https://aadeshsoftech.in" target="_blank" class="text-pink-400 hover:text-pink-300">AadeshSofTech Solutions</a></p>
+        </div>
+    </div>
+</footer>
+
+    <script>
+        // Create ripple effect on menu items
+        function createRipple(event) {
+            const menuItem = event.currentTarget;
+            const circle = document.createElement("span");
+            const diameter = Math.max(menuItem.clientWidth, menuItem.clientHeight);
+            const radius = diameter / 2;
+            
+            circle.style.width = circle.style.height = `${diameter}px`;
+            circle.style.left = `${event.clientX - menuItem.getBoundingClientRect().left - radius}px`;
+            circle.style.top = `${event.clientY - menuItem.getBoundingClientRect().top - radius}px`;
+            circle.classList.add("ripple");
+            
+            const ripple = menuItem.getElementsByClassName("ripple")[0];
+            
+            if (ripple) {
+                ripple.remove();
+            }
+            
+            menuItem.appendChild(circle);
+        }
+
+        // Add ripple effect to desktop menu items
+        const desktopMenuItems = document.querySelectorAll('nav a');
+        desktopMenuItems.forEach(item => {
+            item.addEventListener('click', createRipple);
+        });
+
+        // Mobile Menu Toggle
+        const menuToggle = document.getElementById('menu-toggle');
+        const closeMenu = document.getElementById('close-menu');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const overlay = document.getElementById('overlay');
+        const menuContent = mobileMenu.querySelector('div:not(#overlay)');
+
+        function toggleMenu() {
+            if (mobileMenu.classList.contains('hidden')) {
+                mobileMenu.classList.remove('hidden');
+                setTimeout(() => {
+                    overlay.classList.remove('invisible');
+                    overlay.classList.add('opacity-100');
+                    menuContent.classList.remove('-translate-x-full');
+                }, 10);
+            } else {
+                closeMobileMenu();
+            }
+        }
+
+        function closeMobileMenu() {
+            overlay.classList.remove('opacity-100');
+            overlay.classList.add('invisible');
+            menuContent.classList.add('-translate-x-full');
+            setTimeout(() => {
+                mobileMenu.classList.add('hidden');
+            }, 300);
+        }
+
+        menuToggle.addEventListener('click', toggleMenu);
+        closeMenu.addEventListener('click', closeMobileMenu);
+        overlay.addEventListener('click', closeMobileMenu);
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                if (this.parentElement.classList.contains('hidden') === false) {
+                    closeMobileMenu();
+                }
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // WhatsApp form submission
+    document.getElementById('contact-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const name = document.getElementById('name').value;
+        const mobile = document.getElementById('mobile').value;
+        const service = document.getElementById('service').value;
+        const date = document.getElementById('event-date').value;
+        const message = document.getElementById('message').value;
+        
+        let whatsappMessage = `Hello Stories By Sagar,\n\nI'm interested in your services:\n\n`;
+        whatsappMessage += `Name: ${name}\n`;
+        whatsappMessage += `Mobile: ${mobile}\n`;
+        whatsappMessage += `Service: ${service}\n`;
+        if (date) whatsappMessage += `Event Date: ${date}\n`;
+        if (message) whatsappMessage += `Message: ${message}\n\n`;
+        whatsappMessage += `Please contact me for more details.`;
+        
+        const encodedMessage = encodeURIComponent(whatsappMessage);
+        window.open(`https://wa.me/919834460321?text=${encodedMessage}`, '_blank');
+    });
+        // Change header background on scroll
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.classList.add('bg-black/80', 'backdrop-blur-sm', 'py-4', 'shadow-lg');
+                header.classList.remove('py-5');
+            } else {
+                header.classList.remove('bg-black/80', 'backdrop-blur-sm', 'py-4', 'shadow-lg');
+                header.classList.add('py-5');
+            }
+        });
+    </script>
+</body>
+</html>

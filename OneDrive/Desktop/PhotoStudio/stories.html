@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>3D Image Gallery</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: "Space Grotesk", sans-serif;
+      overflow-x: hidden;
+      margin: 0;
+      min-height: 100vh;
+    }
+    
+    /* Header Styles */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding: 1.25rem 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 50;
+      transition: all 0.3s ease;
+    }
+    
+    .header-logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: white;
+    }
+    
+    .header-logo img {
+      height: 2.5rem;
+    }
+    
+    .desktop-nav {
+      display: none;
+    }
+    
+    .nav-link {
+      position: relative;
+      overflow: hidden;
+      color: white;
+      font-weight: 500;
+      font-size: 1.125rem;
+      padding: 0.5rem 0.5rem;
+      transition: color 0.3s ease;
+    }
+    
+    .nav-link span {
+      position: relative;
+      z-index: 10;
+    }
+    
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background-color: white;
+      transition: all 0.3s ease;
+    }
+    
+    .nav-link:hover::after {
+      width: 100%;
+    }
+    
+    .mobile-menu-btn {
+      display: block;
+      color: white;
+      font-size: 1.5rem;
+      background: none;
+      border: none;
+      cursor: pointer;
+      z-index: 50;
+    }
+    
+    .mobile-menu {
+      position: fixed;
+      inset: 0;
+      z-index: 40;
+      display: none;
+    }
+    
+    .mobile-menu-overlay {
+      position: absolute;
+      inset: 0;
+      
+      visibility: hidden;
+      transition: all 0.3s ease;
+    }
+    
+    .mobile-menu-content {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 75%;
+      max-width: 24rem;
+      background-color: black;
+      transform: translateX(-100%);
+      transition: transform 0.3s ease;
+      padding: 1.5rem;
+    }
+    
+    .mobile-menu-close {
+      align-self: flex-end;
+      color: white;
+      font-size: 1.5rem;
+      margin-bottom: 2rem;
+      cursor: pointer;
+      transition: color 0.3s ease;
+    }
+    
+    .mobile-menu-close:hover {
+      color: rgba(255, 255, 255, 0.7);
+    }
+    
+    .mobile-nav {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+    
+    .mobile-nav-link {
+      color: white;
+      font-size: 1.25rem;
+      transition: all 0.3s ease;
+    }
+    
+    .mobile-nav-link:hover {
+      color: rgba(255, 255, 255, 0.8);
+      transform: translateX(0.5rem);
+    }
+    
+    /* Background Animation */
+    .wrapper {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background: #24C6DC; 
+      background: -webkit-linear-gradient(to bottom, #514A9D, #24C6DC);  
+      background: linear-gradient(to bottom, #514A9D, #24C6DC); 
+      z-index: -1;
+    }
+    
+    .box div {
+      position: absolute;
+      width: 60px;
+      height: 60px;
+      background-color: transparent;
+      border: 6px solid rgba(255,255,255,0.8);
+    }
+    
+    .box div:nth-child(1) {
+      top: 12%;
+      left: 42%;
+      animation: animate 10s linear infinite;
+    }
+    
+    .box div:nth-child(2) {
+      top: 70%;
+      left: 50%;
+      animation: animate 7s linear infinite;
+    }
+    
+    .box div:nth-child(3) {
+      top: 17%;
+      left: 6%;
+      animation: animate 9s linear infinite;
+    }
+    
+    .box div:nth-child(4) {
+      top: 20%;
+      left: 60%;
+      animation: animate 10s linear infinite;
+    }
+    
+    .box div:nth-child(5) {
+      top: 67%;
+      left: 10%;
+      animation: animate 6s linear infinite;
+    }
+    
+    .box div:nth-child(6) {
+      top: 80%;
+      left: 70%;
+      animation: animate 12s linear infinite;
+    }
+    
+    .box div:nth-child(7) {
+      top: 60%;
+      left: 80%;
+      animation: animate 15s linear infinite;
+    }
+    
+    .box div:nth-child(8) {
+      top: 32%;
+      left: 25%;
+      animation: animate 16s linear infinite;
+    }
+    
+    .box div:nth-child(9) {
+      top: 90%;
+      left: 25%;
+      animation: animate 9s linear infinite;
+    }
+    
+    .box div:nth-child(10) {
+      top: 20%;
+      left: 80%;
+      animation: animate 5s linear infinite;
+    }
+    
+    @keyframes animate {
+      0% {
+        transform: scale(0) translateY(-90px) rotate(360deg);
+        opacity: 1;
+      }
+      100% {
+        transform: scale(1.3) translateY(-90px) rotate(-180deg);
+        border-radius: 50%;
+        opacity: 0;
+      }
+    }
+    
+    /* Gallery Styles */
+    .gallery-container {
+      width: 100%;
+      min-height: 100vh;
+      padding: 120px 20px 80px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 20px;
+      width: 100%;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: 12px;
+      aspect-ratio: 1/1;
+      cursor: pointer;
+      transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+      filter: brightness(0.95);
+    }
+    
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+    
+    .gallery-item:hover {
+      transform: translateY(-10px) scale(1.03);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+      filter: brightness(1);
+      z-index: 10;
+    }
+    
+    .gallery-item:hover img {
+      transform: scale(1.1);
+    }
+    
+    /* Footer/Credit Styles */
+    .code-by {
+      position: absolute;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      text-align: center;
+      background-color: rgba(255,255,255,0.7);
+      width: 100%;
+      padding: 20px 0;
+      transition: all 0.9s ease;
+      backdrop-filter: blur(5px);
+      border-radius: 10px;
+      max-width: 300px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    
+    .code-by:hover {
+      background-color: rgba(255,255,255,0.9);
+      transform: translateX(-50%) scale(1.05);
+    }
+    
+    .code-by h2 {
+      color: #333;
+      font-size: 30px;
+      font-weight: 600;
+    }
+    
+    .code-by h2 span {
+      text-transform: uppercase;
+      position: relative;
+      font-size: 30px;
+      display: inline-block;
+    }
+    
+    .code-by h2 span::before {
+      content: attr(data);
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      color: #4a6fa5;
+      text-transform: uppercase;
+      opacity: 0;
+      transition: all 0.5s ease;
+      transform: translateY(10px);
+    }
+    
+    .code-by h2 span:hover::before {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    /* Modal Styles */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.95);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+      animation: fadeIn 0.3s ease;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    
+    .modal-content {
+      width: 90%;
+      max-width: 900px;
+      max-height: 90vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    .modal-content img {
+      max-width: 100%;
+      max-height: 90vh;
+      object-fit: contain;
+      border-radius: 8px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    }
+    
+    .close {
+      position: absolute;
+      top: 30px;
+      right: 40px;
+      color: white;
+      font-size: 40px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+    
+    .close:hover {
+      transform: rotate(90deg) scale(1.2);
+      color: #4a6fa5;
+    }
+    
+    /* Responsive Styles */
+    @media (min-width: 768px) {
+      header {
+        padding: 1.25rem 4rem;
+      }
+      
+      .desktop-nav {
+        display: flex;
+        gap: 1.5rem;
+      }
+      
+      .mobile-menu-btn {
+        display: none;
+      }
+      
+      .header-logo img {
+        height: 3rem;
+      }
+      
+      .gallery-grid {
+        grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .gallery-grid {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      }
+      
+      .code-by h2, .code-by h2 span {
+        font-size: 24px;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .gallery-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Ripple effect for menu items */
+    .ripple {
+        position: absolute;
+        border-radius: 50%;
+        background-color: rgba(255, 255, 255, 0.7);
+        transform: scale(0);
+        animation: ripple 0.6s linear;
+        pointer-events: none;
+    }
+    
+    @keyframes ripple {
+        to {
+            transform: scale(2.5);
+            opacity: 0;
+        }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header/Navbar -->
+  <header id="header" class="fixed top-0 left-0 w-full px-4 py-5 md:px-16 lg:px-24 flex justify-between items-center z-50 transition-all duration-300">
+      <!-- Logo -->
+      <a href="#home" class="text-2xl md:text-3xl font-bold text-white">
+          <img src="logo.png" alt="Logo" class="h-10 md:h-12">
+      </a>
+      
+      <!-- Desktop Navigation -->
+      <nav class="hidden md:flex space-x-6 lg:space-x-8">
+          <a href="./index.html" class="group relative overflow-hidden text-white font-medium text-lg hover:text-white/80 transition px-2 py-1">
+              <span class="relative z-10">Home</span>
+              <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-full"></span>
+          </a>
+          <a href="about.html" class="group relative overflow-hidden text-white font-medium text-lg hover:text-white/80 transition px-2 py-1">
+              <span class="relative z-10">About US</span>
+              <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-full"></span>
+          </a>
+          <a href="services.html" class="group relative overflow-hidden text-white font-medium text-lg hover:text-white/80 transition px-2 py-1">
+              <span class="relative z-10">Services</span>
+              <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-full"></span>
+          </a>
+          <a href="stories.html" class="group relative overflow-hidden text-white font-medium text-lg hover:text-white/80 transition px-2 py-1">
+              <span class="relative z-10">Stories</span>
+              <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-full"></span>
+          </a>
+          <a href="#contact" class="group relative overflow-hidden text-white font-medium text-lg hover:text-white/80 transition px-2 py-1">
+              <span class="relative z-10">Contact</span>
+              <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-full"></span>
+          </a>
+      </nav>
+      
+      <!-- Mobile Menu Button -->
+      <button id="menu-toggle" class="md:hidden text-white text-2xl focus:outline-none z-50">
+          ☰
+      </button>
+      
+      <!-- Mobile Menu -->
+      <div id="mobile-menu" class="md:hidden fixed inset-0 z-40 hidden">
+          <!-- Overlay -->
+          <div id="overlay" class="absolute inset-0 bg-black/50 opacity-0 invisible transition-all duration-300"></div>
+          
+          <!-- Menu Content -->
+          <div class="absolute top-0 left-0 h-full w-3/4 max-w-sm bg-black-900/80 backdrop-blur-sm shadow-xl transform -translate-x-full transition-transform duration-300">
+              <div class="flex flex-col h-full p-6">
+                  <button id="close-menu" class="self-end text-white text-2xl mb-8 hover:text-white/70 transition">×</button>
+                  <div class="flex flex-col space-y-6">
+                      <a href="index.html" class="text-white text-xl hover:text-white/80 transition transform hover:translate-x-2">Home</a>
+                      <a href="about.html" class="text-white text-xl hover:text-white/80 transition transform hover:translate-x-2">About</a>
+                      <a href="services.html" class="text-white text-xl hover:text-white/80 transition transform hover:translate-x-2">Services</a>
+                      <a href="stories.html" class="text-white text-xl hover:text-white/80 transition transform hover:translate-x-2">Stories</a>
+                      <a href="#contact" class="text-white text-xl hover:text-white/80 transition transform hover:translate-x-2">Contact</a>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </header>
+
+  <div class="wrapper">
+    <div class="box">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+  </div>
+  <section class="pt-32 pb-16 px-4 text-center">
+    <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">STORIES BY SAGAR</h1>
+    <p class="text-xl text-white/80 max-w-2xl mx-auto">Capturing life's precious moments through the lens of creativity and passion</p>
+  </section>
+  <!-- Gallery Section -->
+  <div class="gallery-container">
+    <div class="gallery-grid">
+      <div class="gallery-item" onclick="openModal('./img/three.jpg')">
+        <img src="./img/three.jpg" alt="Gallery Image 1">
+      </div>
+      <div class="gallery-item" onclick="openModal('./img/five.jpg')">
+        <img src="./img/five.jpg" alt="Gallery Image 2">
+      </div>
+      <div class="gallery-item" onclick="openModal('./img/four.jpg')">
+        <img src="./img/four.jpg" alt="Gallery Image 3">
+      </div>
+      <div class="gallery-item" onclick="openModal('./img/three.jpg')">
+        <img src="./img/three.jpg" alt="Gallery Image 4">
+      </div>
+      <div class="gallery-item" onclick="openModal('./img/two.jpg')">
+        <img src="./img/two.jpg" alt="Gallery Image 5">
+      </div>
+      <div class="gallery-item" onclick="openModal('./img/one.jpg')">
+        <img src="./img/one.jpg" alt="Gallery Image 6">
+      </div>
+      <div class="gallery-item" onclick="openModal('./img/two.jpg')">
+        <img src="./img/six.jpg" alt="Gallery Image 7">
+      </div>
+      <div class="gallery-item" onclick="openModal('./img/two.jpg')">
+        <img src="./img/seven.jpg" alt="Gallery Image 8">
+      </div>
+      <div class="gallery-item" onclick="openModal('./img/two.jpg')">
+        <img src="./img/eight.jpg" alt="Gallery Image 9">
+      </div>
+      <div class="gallery-item" onclick="openModal('./img/two.jpg')">
+        <img src="./img/nine.jpg" alt="Gallery Image 10">
+      </div>
+      <div class="gallery-item" onclick="openModal('./img/two.jpg')">
+        <img src="./img/ten.jpg" alt="Gallery Image 11">
+      </div>
+      <div class="gallery-item" onclick="openModal('./img/two.jpg')">
+        <img src="./img/eleven.jpg" alt="Gallery Image 11">
+      </div>
+      <div class="gallery-item" onclick="openModal('./img/two.jpg')">
+        <img src="./img/twele.jpg" alt="Gallery Image 11">
+      </div>
+      <div class="gallery-item" onclick="openModal('./img/two.jpg')">
+        <img src="./img/threeten.jpg" alt="Gallery Image 11">
+      </div>
+      <div class="gallery-item" onclick="openModal('./img/two.jpg')">
+        <img src="./img/fourteen.jpg" alt="Gallery Image 11">
+      </div>
+    </div>
+  </div>
+
+  <!-- Contact Section -->
+  <section id="contact" class="py-20 px-4 bg-gray-800 text-white">
+     <div class="max-w-4xl mx-auto">
+        <h2 class="text-3xl md:text-4xl font-bold mb-12 text-center">Contact Us</h2>
+        
+        <div class="flex flex-col md:flex-row gap-12">
+            <div class="md:w-1/2">
+                <h3 class="text-2xl font-semibold mb-6">Get In Touch</h3>
+                
+                <div class="space-y-4">
+                    <div class="flex items-start">
+                        <span class="mr-4 mt-1">📱</span>
+                        <div>
+                            <h4 class="font-semibold">Phone/WhatsApp</h4>
+                            <p class="text-gray-300">+91 98344 60321</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start">
+                        <span class="mr-4 mt-1">✉️</span>
+                        <div>
+                            <h4 class="font-semibold">Email</h4>
+                            <p class="text-gray-300">storiesbysagar01@gmail.com</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start">
+                        <span class="mr-4 mt-1">📍</span>
+                        <div>
+                            <h4 class="font-semibold">Location</h4>
+                            <p class="text-gray-300 mb-2">Ashok Stambh Nashik, Lotus Capital Building, Floor No 07, Shop No.703</p>
+                            <a href="https://maps.app.goo.gl/sQAf8zZVQA5YsydT9" target="_blank" class="text-pink-400 hover:text-pink-300 transition">View on Google Maps</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="md:w-1/2">
+                <form id="contact-form" class="space-y-6">
+                    <div>
+                        <label for="name" class="block mb-2 font-medium">Full Name</label>
+                        <input type="text" id="name" required class="w-full px-4 py-3 rounded-lg bg-gray-700 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-pink-500">
+                    </div>
+                    <div>
+                        <label for="mobile" class="block mb-2 font-medium">Mobile Number</label>
+                        <input type="tel" id="mobile" required class="w-full px-4 py-3 rounded-lg bg-gray-700 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-pink-500">
+                    </div>
+                    <div>
+                        <label for="service" class="block mb-2 font-medium">Select Service</label>
+                        <select id="service" required class="w-full px-4 py-3 rounded-lg bg-gray-700 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-pink-500">
+                            <option value="">-- Select a Service --</option>
+                            <option value="Political Events">Political Events</option>
+                            <option value="Festivals & Trips">Festivals & Trips</option>
+                            <option value="Pre-Wedding Events">Pre-Wedding Events</option>
+                            <option value="Maternity">Maternity</option>
+                            <option value="Baby & Kids Events">Baby & Kids Events</option>
+                            <option value="Personal & Lifestyle">Personal & Lifestyle</option>
+                            <option value="Family & Cultural Functions">Family & Cultural Functions</option>
+                            <option value="Album & Invitation Design">Album & Invitation Design</option>
+                            <option value="Drone Shoot">Drone Shoot</option>
+                            <option value="Live Streaming">Live Streaming</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="event-date" class="block mb-2 font-medium">Event Date</label>
+                        <input type="date" id="event-date" class="w-full px-4 py-3 rounded-lg bg-gray-700 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-pink-500">
+                    </div>
+                    <div>
+                        <label for="message" class="block mb-2 font-medium">Your Message (Optional)</label>
+                        <textarea id="message" rows="3" class="w-full px-4 py-3 rounded-lg bg-gray-700 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-pink-500"></textarea>
+                    </div>
+                    <button type="submit" class="w-full bg-pink-600 text-white font-semibold px-6 py-3 rounded-lg hover:bg-pink-700 transition duration-300">
+                        Let's Get Started
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-12 px-4 bg-gray-900 text-gray-400">
+    <div class="max-w-6xl mx-auto">
+        <div class="flex flex-col md:flex-row justify-between items-center">
+            <div class="mb-6 md:mb-0">
+                <a href="./index.html" class="text-2xl font-bold text-white">
+                    <img src="logo.png" alt="Logo" class="h-10">
+                </a>
+            </div>
+            <div class="flex space-x-6 mb-6 md:mb-0">
+                <a href="./index.html" class="hover:text-white transition duration-300">Home</a>
+                <a href="./about.html" class="hover:text-white transition duration-300">About</a>
+                <a href="./services.html" class="hover:text-white transition duration-300">Services</a>
+                <a href="./stories.html" class="hover:text-white transition duration-300">Stories</a>
+                <a href="#contact" class="hover:text-white transition duration-300">Contact</a>
+            </div>
+            <div class="flex space-x-4">
+                <a href="#" class="text-gray-400 hover:text-white transition duration-300 text-xl" aria-label="Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="#" class="text-gray-400 hover:text-white transition duration-300 text-xl" aria-label="LinkedIn">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="#" class="text-gray-400 hover:text-white transition duration-300 text-xl" aria-label="Facebook">
+                    <i class="fab fa-facebook"></i>
+                </a>
+                <a href="#" class="text-gray-400 hover:text-white transition duration-300 text-xl" aria-label="WhatsApp">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+            </div>
+        </div>
+        <div class="border-t border-gray-800 mt-8 pt-8 text-center">
+            <p>&copy; 2023 Stories By Sagar. All rights reserved.</p>
+            <p class="mt-2 text-sm">Developed by <a href="https://aadeshsoftech.in" target="_blank" class="text-pink-400 hover:text-pink-300">AadeshSofTech</a></p>
+        </div>
+    </div>
+  </footer>
+  
+  <!-- Modal -->
+  <div id="imageModal" class="modal">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <div class="modal-content" id="modalContent">
+      <!-- Image will be inserted here by JavaScript -->
+    </div>
+  </div>
+  
+  <script>
+    // Create ripple effect on menu items
+    function createRipple(event) {
+        const menuItem = event.currentTarget;
+        const circle = document.createElement("span");
+        const diameter = Math.max(menuItem.clientWidth, menuItem.clientHeight);
+        const radius = diameter / 2;
+        
+        circle.style.width = circle.style.height = `${diameter}px`;
+        circle.style.left = `${event.clientX - menuItem.getBoundingClientRect().left - radius}px`;
+        circle.style.top = `${event.clientY - menuItem.getBoundingClientRect().top - radius}px`;
+        circle.classList.add("ripple");
+        
+        const ripple = menuItem.getElementsByClassName("ripple")[0];
+        
+        if (ripple) {
+            ripple.remove();
+        }
+        
+        menuItem.appendChild(circle);
+    }
+
+    // Add ripple effect to desktop menu items
+    const desktopMenuItems = document.querySelectorAll('nav a');
+    desktopMenuItems.forEach(item => {
+        item.addEventListener('click', createRipple);
+    });
+
+    // Mobile Menu Toggle
+    const menuToggle = document.getElementById('menu-toggle');
+    const closeMenu = document.getElementById('close-menu');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const overlay = document.getElementById('overlay');
+    const menuContent = mobileMenu.querySelector('div:not(#overlay)');
+
+    function toggleMenu() {
+        if (mobileMenu.classList.contains('hidden')) {
+            mobileMenu.classList.remove('hidden');
+            setTimeout(() => {
+                overlay.classList.remove('invisible');
+                overlay.classList.add('opacity-100');
+                menuContent.classList.remove('-translate-x-full');
+            }, 10);
+        } else {
+            closeMobileMenu();
+        }
+    }
+
+    function closeMobileMenu() {
+        overlay.classList.remove('opacity-100');
+        overlay.classList.add('invisible');
+        menuContent.classList.add('-translate-x-full');
+        setTimeout(() => {
+            mobileMenu.classList.add('hidden');
+        }, 300);
+    }
+
+    menuToggle.addEventListener('click', toggleMenu);
+    closeMenu.addEventListener('click', closeMobileMenu);
+    overlay.addEventListener('click', closeMobileMenu);
+
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            if (this.parentElement.classList.contains('hidden') === false) {
+                closeMobileMenu();
+            }
+            
+            const targetId = this.getAttribute('href');
+            const targetElement = document.querySelector(targetId);
+            
+            if (targetElement) {
+                window.scrollTo({
+                    top: targetElement.offsetTop - 80,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+
+    // WhatsApp form submission
+    document.getElementById('contact-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const name = document.getElementById('name').value;
+        const mobile = document.getElementById('mobile').value;
+        const service = document.getElementById('service').value;
+        const date = document.getElementById('event-date').value;
+        const message = document.getElementById('message').value;
+        
+        let whatsappMessage = `Hello Stories By Sagar,\n\nI'm interested in your services:\n\n`;
+        whatsappMessage += `Name: ${name}\n`;
+        whatsappMessage += `Mobile: ${mobile}\n`;
+        whatsappMessage += `Service: ${service}\n`;
+        if (date) whatsappMessage += `Event Date: ${date}\n`;
+        if (message) whatsappMessage += `Message: ${message}\n\n`;
+        whatsappMessage += `Please contact me for more details.`;
+        
+        const encodedMessage = encodeURIComponent(whatsappMessage);
+        window.open(`https://wa.me/919834460321?text=${encodedMessage}`, '_blank');
+    });
+
+    // Change header background on scroll
+    window.addEventListener('scroll', function() {
+        const header = document.getElementById('header');
+        if (window.scrollY > 50) {
+            header.classList.add('bg-black/80', 'backdrop-blur-sm', 'py-4', 'shadow-lg');
+            header.classList.remove('py-5');
+        } else {
+            header.classList.remove('bg-black/80', 'backdrop-blur-sm', 'py-4', 'shadow-lg');
+            header.classList.add('py-5');
+        }
+    });
+
+    // Mobile menu functionality
+    const menuToggle2 = document.getElementById('menu-toggle');
+    const mobileMenu2 = document.getElementById('mobile-menu');
+    const closeMenu2 = document.getElementById('close-menu');
+    const overlay2 = document.getElementById('overlay');
+    
+    menuToggle2.addEventListener('click', () => {
+      mobileMenu2.style.display = 'block';
+      setTimeout(() => {
+        overlay2.style.opacity = '1';
+        overlay2.style.visibility = 'visible';
+        document.querySelector('.mobile-menu-content').style.transform = 'translateX(0)';
+      }, 10);
+      document.body.style.overflow = 'hidden';
+    });
+    
+    function closeMobileMenu2() {
+      overlay2.style.opacity = '0';
+      overlay2.style.visibility = 'hidden';
+      document.querySelector('.mobile-menu-content').style.transform = 'translateX(-100%)';
+      setTimeout(() => {
+        mobileMenu2.style.display = 'none';
+      }, 300);
+      document.body.style.overflow = 'auto';
+    }
+    
+    closeMenu2.addEventListener('click', closeMobileMenu2);
+    overlay2.addEventListener('click', closeMobileMenu2);
+    
+    // Image modal functionality
+    function openModal(imgSrc) {
+      const modal = document.getElementById('imageModal');
+      const modalContent = document.getElementById('modalContent');
+      
+      // Clear previous content and add the clicked image
+      modalContent.innerHTML = '';
+      const img = document.createElement('img');
+      img.src = imgSrc;
+      img.alt = "Gallery Image";
+      modalContent.appendChild(img);
+      
+      modal.style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+    }
+    
+    function closeModal() {
+      document.getElementById('imageModal').style.display = 'none';
+      document.body.style.overflow = 'auto';
+    }
+    
+    // Close modal when clicking outside the image
+    window.onclick = function(event) {
+      const modal = document.getElementById('imageModal');
+      if (event.target == modal) {
+        closeModal();
+      }
+    }
+    
+    // Close modal with Escape key
+    document.addEventListener('keydown', function(event) {
+      if (event.key === 'Escape') {
+        closeModal();
+      }
+    });
+    
+    // Add animation to items on page load
+    document.addEventListener('DOMContentLoaded', () => {
+      const items = document.querySelectorAll('.gallery-item');
+      items.forEach((item, index) => {
+        item.style.opacity = '0';
+        item.style.transform = 'translateY(50px)';
+        item.style.transition = `all 0.5s ease ${index * 0.1}s`;
+        
+        setTimeout(() => {
+          item.style.opacity = '1';
+          item.style.transform = 'translateY(0)';
+        }, 100);
+      });
+    });
+  </script>
+</body>
+</html>
