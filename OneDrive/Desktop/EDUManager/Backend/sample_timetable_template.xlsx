@@ -1,0 +1,7 @@
+Branch,Semester,Course Code,Course Name,L/T/P,Main Faculty,Co-Faculty
+CSE,5,CS501,Data Structures,3/1/2,Dr. John Smith,Dr. Jane Doe
+CSE,5,CS502,Database Management,3/0/2,Dr. Jane Doe,
+ECE,3,EC301,Digital Electronics,2/1/2,Dr. Mike Johnson,Dr. Sarah Wilson
+ECE,3,EC302,Signals and Systems,3/1/0,Dr. Sarah Wilson,
+ME,4,ME401,Thermodynamics,3/0/2,Dr. Robert Brown,
+ME,4,ME402,Mechanics of Materials,2/1/2,Dr. Robert Brown,Dr. Lisa Davis 
